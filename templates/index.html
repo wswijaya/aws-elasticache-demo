@@ -1,0 +1,138 @@
+i<head>
+   <title>Caching Demo</title>
+   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+   <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#"> Amazon ElastiCache for Redis Database Caching</a>
+</nav>
+
+<br><br>
+
+<div class="container">
+   <div class="row">
+      <div class="col-md" style="text-align: left;">
+         <div class="h2 card-header">
+            Database Caching Options
+         </div><br><br>
+         <div class="col">
+            <h5> Set Cache TTL</h5>
+            <input type="range" min="1000" max="30000" value="3000" step="1000" class="slider" id="ttl-slider"></input>
+            <h5 id="demo">TTL is set to 3000 milliseconds</h5>
+            <br><br>
+            <h5> Number of Different Queries</h5>
+            <input type="range" min="10" max="1000" value="500" step="10" class="slider" id="data-slider"></input>
+            <h5 id="data-demo">500 different queries</h5>
+            <br>
+            <h5> Number of Calls</h5>
+            <input type="range" min="50" max="5000" value="2000" step="50" class="slider" id="total-slider"></input>
+            <h5 id="data-total">2000 total calls</h5>
+            <br>
+         </div>
+         <div class="col-md" style="text-align: left;">
+            <h5> Query Complexity</h5>
+            <select class="form-control form-control-lg" name="complexity" id="complexity">
+               <option value="Low">Low</option>
+               <option value="Medium">Medium</option>
+               <option value="High">High</option>
+            </select>
+            <h5> Database</h5>
+            <select class="form-control form-control-lg" name="db" id="db">
+               <!-- <option value="MySQL">MySQL</option> -->
+               <option value="PostgreSQL">PostgreSQL</option>
+            </select><br>
+            <p><button  class="btn btn-primary" id="db_run" onclick="launch_db_run()">Query DB</button></p>
+         </div>
+      </div>
+   </div>
+
+   <div class="row">
+      <div class="col-md" style="text-align: left;">
+      <div class="h2 card-header">
+         Cache Performance
+      </div>
+      <br><br>    
+      <table class="table">
+         <thead class="thead-dark">
+            <th style="width: 30%"  scope-"col">Metric</th>
+            <th style="width: 70%" scope-"col">Result</th>
+         </thead>
+         <tbody>
+            <tr>
+               <td>
+                  <span>Cache Hit Ratio: <span id="ratio"></span> </span></td><td>
+                  <div class="progress">
+                     <div id ="cache-hit-bar" class="progress-bar bg-success " role="progressbar" style="width: 100%" aria-valuenow=0 aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+               </td>
+            </tr>
+            <tr>
+               <td>
+                  <span>ElastiCache Commands Per Second: <span id="redis_qps"></span></span>
+               </td>
+               <td>
+                  <div class="progress">
+                     <div id ="cache-query-bar" class="progress-bar bg-info " role="progressbar" style="width: 100%" aria-valuenow=0 aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+               </td>
+           </tr>
+           <tr>
+               <td>
+                  <span> DB Queries Per Second: <span id="db_qps"></span></span>
+               </td>
+               <td>
+                  <div class="progress">
+                     <div id ="db-query-bar" class="progress-bar bg-danger " role="progressbar" style="width: 100%" aria-valuenow=0 aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+               </td>
+            </tr>
+            <tr>
+               <td>
+                  <span> Progress: <span id="state"></span><span id="progress_bar"></span></span>
+               </td>
+               <td>
+                  <div class="progress">
+                     <div id ="progress-status" class="progress-bar" role="progressbar" style="width: 100%" aria-valuenow=0 aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+               </td>
+            </tr>
+         </tbody>
+      </table>
+   </div>
+   </div>
+
+   <div class="row">
+      <div class="col-md" style="text-align: left;">
+         <div class="h2 card-header">Cache Hits and Misses</div>
+         <div id="graph" style="width:700px;height:500px;"></div>
+      </div>
+   </div>
+   
+   <div class="row">
+      <div class="col-md" style="text-align: left;">
+         <p id="db_summary"></p>
+         <div class="col-md" style="text-align: left;">
+            <div class="h2 card-header">Database Cache Logs</div>
+            <br>
+            <div id="db_cache_log" style="width:100%;height:800px">
+               <table class="table" id="log_tbl"></table>
+            </div>
+         </div>
+      </div>
+   </div>
+
+   <footer class="text-muted">
+      <div class="container">
+         <p class="float-right">
+            <a href="#">Back to top</a>
+         </p>
+         <p>Learn more about AWS ElastiCache</p>
+         <p>New to caching? <a href="https://aws.amazon.com/caching/aws-caching/">Visit the AWS Caching Homepage</a> or read our <a href="https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/GettingStarted.html">ElastiCache for Redis getting started guide</a>.</p>
+      </div>
+   </footer>
+</div>
+
+<script src="{{url_for('static', filename='client.js')}}"></script>
+<link rel="stylesheet" type="text/css" href="/static/style.css">
+

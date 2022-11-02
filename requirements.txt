@@ -1,0 +1,7 @@
+Flask==2.0.3
+redis==3.5.3
+pymysql==0.9.3
+requests==2.24.0
+psycopg2-binary==2.9.1
+certifi
+wheel

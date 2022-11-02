@@ -1,0 +1,64 @@
+#log_tbl {
+  font-family: "Amazon Ember", "Work Sans", "Helvetica", "Tahoma", "Geneva",
+    "Arial", sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+#log_tbl td,
+#log_tbl th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+#log_tbl tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+#log_tbl tr:hover {
+  background-color: #ddd;
+}
+#log_tbl th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #161e2d;
+  color: white;
+}
+#db_run {
+  background-color: #ff9900;
+  border: none;
+  color: #161e2d;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+.slider {
+  -webkit-appearance: none;
+  width: 50%;
+  height: 15px;
+  border-radius: 5px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: 0.2s;
+  transition: opacity 0.2s;
+}
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #4caf50;
+  cursor: pointer;
+}
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #4caf50;
+  cursor: pointer;
+}
+.progress-bar[aria-valuenow="0"];
